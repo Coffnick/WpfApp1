@@ -17,9 +17,7 @@ using System.Data.SqlClient;
 
 namespace WpfApp1
 {
-    /// <summary>
-    /// Логика взаимодействия для WorkerWindow.xaml
-    /// </summary>
+
     public partial class WorkerWindow : Window
     {
         db database = new db();
@@ -45,7 +43,7 @@ namespace WpfApp1
 
         private void Colums_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
-            if (e.PropertyName == "Status") // Замените "Status" на имя свойства, которое должно быть ComboBox
+            if (e.PropertyName == "Status") 
             {
                 var comboBoxColumn = new DataGridComboBoxColumn
                 {
