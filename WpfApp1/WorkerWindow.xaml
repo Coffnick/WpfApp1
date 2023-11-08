@@ -5,13 +5,15 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
+        Loaded="Show_Data"
         Title="WorkerWindow" Height="600" Width="1200">
+    
     <Grid>
         <DataGrid x:Name="Colums" AutoGenerateColumns="True" AutoGeneratingColumn="Colums_AutoGeneratingColumn" Margin="0,0,0,125" MaxWidth="1050" MaxHeight="400" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10"/>
         <Border Margin="1050,0,0,0">
             <Grid>
-                <Button x:Name="ShowDataWorker" Margin="10,10,10,481" Height="35" Width="100" Content="Show Data" Click="Show_Data"/>
-                <Button x:Name="SaveDataWorker" Margin="10,60,10,430" Height="35" Width="100" Content="SaveData" Click="SaveData_Click"   />
+                <Button x:Name="ShowDataWorker" Margin="10,10,10,481" Height="35" Width="100" Content="Update Data" Padding="0" Click="Show_Data"/>
+                <Button x:Name="SaveDataWorker" Margin="10,60,10,430" Height="35" Width="100" Content="Save Data" Padding="0" Click="SaveData_Click"   />
             </Grid>
         </Border>
     </Grid>

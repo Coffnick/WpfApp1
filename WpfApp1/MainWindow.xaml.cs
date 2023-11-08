@@ -21,6 +21,7 @@ namespace WpfApp1
  
     public partial class MainWindow : Window
     {
+        int idWorker = 0;
         db database = new db();
         public MainWindow()
         {
@@ -30,6 +31,7 @@ namespace WpfApp1
         {
             string login = Login.Text;
             string password = Password.Password;
+            
 
             database.openCon();
             SqlDataAdapter adapter = new SqlDataAdapter();

@@ -81,8 +81,9 @@ namespace WpfApp1
                 string TypeDestruction = row["TypeDestruction"].ToString();
                 string ProblemDescription = row["ProblemDescription"].ToString();
                 string Date = row["Date"].ToString();
+                string Equipment = row["Equipment"].ToString();
 
-                string query = "UPDATE Applications SET id = @id ,idWorker = @idWorker,TypeDestruction=@TypeDestruction,ProblemDescription=@ProblemDescription, Date=@Date  WHERE idApplication = @idApplication";
+                string query = "UPDATE Applications SET id = @id ,idWorker = @idWorker,TypeDestruction=@TypeDestruction,ProblemDescription=@ProblemDescription, Date=@Date, Equipment = @Equipment  WHERE idApplication = @idApplication";
                 SqlCommand command = new SqlCommand(query, database.getConnection());
 
                 command.Parameters.AddWithValue("@idApplication", idApplication);
@@ -90,11 +91,77 @@ namespace WpfApp1
                 command.Parameters.AddWithValue("@TypeDestruction", TypeDestruction);
                 command.Parameters.AddWithValue("@ProblemDescription", ProblemDescription);
                 command.Parameters.AddWithValue("@Date", Date);
+                command.Parameters.AddWithValue("@Equipment", Equipment);
                 command.Parameters.AddWithValue("@id", id);
 
                 command.ExecuteNonQuery();
             }
+          
             
+        }
+
+
+        private void InsertData_Click(object sender, RoutedEventArgs e)
+        {
+            database.openCon();
+
+
+            SqlDataAdapter da = new SqlDataAdapter("select idApplication from Applications", database.getConnection()); 
+            DataSet ds = new DataSet(); 
+            da.Fill(ds, "idApplication"); 
+
+            List<int> idListApp = new List<int>();
+            foreach(DataRow row in ds.Tables["idApplication"].Rows)
+            {
+                idListApp.Add((int)row["idApplication"]);
+            }
+
+            foreach(int _id  in idListApp){
+              outputTextBox.Text = _id.ToString();
+            }
+
+            DataTable dt = ((DataView)Colums.ItemsSource).ToTable();
+
+
+            int count = 0;
+            foreach (DataRow row in dt.Rows)
+            {
+
+                int idApplication = Convert.ToInt32(row["idApplication"]);
+                int id = Convert.ToInt32(row["id"]);
+                int idWorker = Convert.ToInt32(row["idWorker"]);
+                string TypeDestruction = row["TypeDestruction"].ToString();
+                string ProblemDescription = row["ProblemDescription"].ToString();
+                string Date = row["Date"].ToString();
+                string Equipment = row["Equipment"].ToString();
+                string status = row["Status"].ToString();
+
+
+                if (idListApp.Contains(idApplication))
+                {
+                    count++;
+                }
+                else
+                {
+                    string query = "INSERT INTO Applications (idApplication, id,idWorker,TypeDestruction,ProblemDescription,Date,Equipment,Status) VALUES (@idApplication, @id, @idWorker,@TypeDestruction,@ProblemDescription,@Date,@Equipment,@Status)";
+                    SqlCommand command = new SqlCommand(query, database.getConnection());
+                    command.Parameters.AddWithValue("@idApplication", idApplication);
+                    command.Parameters.AddWithValue("@idWorker", idWorker);
+                    command.Parameters.AddWithValue("@TypeDestruction", TypeDestruction);
+                    command.Parameters.AddWithValue("@ProblemDescription", ProblemDescription);
+                    command.Parameters.AddWithValue("@Date", Date);
+                    command.Parameters.AddWithValue("@Equipment", Equipment);
+                    command.Parameters.AddWithValue("@id", id);
+                    command.Parameters.AddWithValue("@Status", status);
+
+                    command.ExecuteNonQuery();
+                }
+
+
+
+
+
+            }
         }
     }
 }

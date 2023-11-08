@@ -36,6 +36,8 @@ namespace WpfApp1
 
             Colums.ItemsSource = ds.Tables["Applications"].DefaultView;
         }
+        
+    
         private void Show_Data(object sender, RoutedEventArgs e)
         {
             Loaddata();

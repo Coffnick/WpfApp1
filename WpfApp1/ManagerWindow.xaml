@@ -5,17 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApp1"
         mc:Ignorable="d"
+        Loaded="Show_Data"
         Title="ManagerWindow" Height="600" Width="1200">
     <Grid>
         <DataGrid x:Name="Colums" AutoGenerateColumns="True" AutoGeneratingColumn="Colums_AutoGeneratingColumn" Margin="0,0,0,125" MaxWidth="1050" MaxHeight="400" HorizontalAlignment="Left" VerticalAlignment="Top" Padding="10"/>
-
-
+        
+        
         <Border Margin="1050,0,0,0">
             <Grid>
-                <Button x:Name="ShowData" Margin="10,10,10,481" Height="35" Width="100" Content="Show Data" Click="Show_Data"/>
-                <Button x:Name="SaveData" Margin="10,60,10,430" Height="35" Width="100" Content="SaveData" Click="SaveData_Click"   />
+                <TextBox x:Name="outputTextBox" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" Margin="25,219,10,219" RenderTransformOrigin="0.5,0.5">
+                   
+                </TextBox>
+                <Button x:Name="ShowData" Margin="10,10,10,480" Height="35" Width="100" Content="Show Data" Click="Show_Data"/>
+                <Button x:Name="SaveData" Margin="10,50,10,420" Height="35" Width="100" Content="SaveData" Click="SaveData_Click"/>
+                <Button x:Name="InsertData" Margin="10,119,10,400" Height="35" Width="100" Content="Insert Data" Padding="0" Click="InsertData_Click"/>
             </Grid>
         </Border>
+        
     </Grid>
     
 
