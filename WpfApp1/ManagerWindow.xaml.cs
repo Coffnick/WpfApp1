@@ -55,10 +55,9 @@ namespace WpfApp1
                 e.Column = comboBoxColumn;
             }
         }
-
-        private void SaveData_Click(object sender, RoutedEventArgs e)
+        private void save()
         {
-            database.openCon();
+           database.openCon();
             DataTable dt = ((DataView)Colums.ItemsSource).ToTable();
             foreach (DataRow row in dt.Rows) 
             {
@@ -95,15 +94,24 @@ namespace WpfApp1
                 command.Parameters.AddWithValue("@id", id);
 
                 command.ExecuteNonQuery();
+            } 
+        }
+        private void SaveData_Click(object sender, RoutedEventArgs e)
+        {
+           
+          try
+            {
+                save();
             }
-          
-            
+            catch(Exception)
+            {
+                MessageBox.Show("Введены неверные значения!");
+            }
         }
 
-
-        private void InsertData_Click(object sender, RoutedEventArgs e)
+        private void insert()
         {
-            database.openCon();
+database.openCon();
 
 
             SqlDataAdapter da = new SqlDataAdapter("select idApplication from Applications", database.getConnection()); 
@@ -157,11 +165,19 @@ namespace WpfApp1
                     command.ExecuteNonQuery();
                 }
 
-
-
-
-
             }
+        }
+        private void InsertData_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                insert();
+            }
+            catch (Exception ) 
+            {
+                MessageBox.Show("Введены неверные значения!");
+            }
+
         }
     }
 }
